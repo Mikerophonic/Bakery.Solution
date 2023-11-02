@@ -53,11 +53,12 @@ namespace Bakery.Controllers
    [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
+        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Description");
         if (!ModelState.IsValid)
         {
-            ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Title");
             return View(treat);
         }
+        
         else
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -72,7 +73,7 @@ namespace Bakery.Controllers
     public ActionResult AddFlavor(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Title");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Description");
       return View(thisTreat);
     }
 
