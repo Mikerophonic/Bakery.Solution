@@ -7,5 +7,7 @@ namespace Bakery.Models
    public int FlavorId { get; set; }
    public string Description { get; set; }
    public List<FlavorTreat> JoinEntities { get; set; } 
+   public ApplicationUser User { get; set; }  
+
  }
 }
