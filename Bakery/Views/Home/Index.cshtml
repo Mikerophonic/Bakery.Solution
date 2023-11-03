@@ -4,53 +4,67 @@
 
 @using Bakery.Models;
 
-<h1>Welcome to Pierre's Bakery!</h1>
+<div class="container">
+    <h1>Welcome to Pierre's Bakery!</h1>
 
-<hr>
+    <div class="flex-container flavor-treat-div">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h4>Your Flavors</h4>
+            @if (Model["flavors"].Length == 0)
+            {
+                <p>No flavors have been added yet!</p>
+            }
+            <div class="button-container">
+                @foreach (Flavor flavor in Model["flavors"])
+                {
+                    <button class="button flavor-treat-btn">
+                        @Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId })
+                    </button>
+                }
+            <button class="button flavor-treat-btn">
+            @Html.ActionLink("+", "Create", "Flavors")
+            </button>
+            </div>
+        }
+        else
+        {
+            <h4>Flavors</h4>
+            <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your flavors.</p>
+        }
 
-@if (User.Identity.IsAuthenticated)
-{
-  <h4>Your Flavors</h4>
-  @if (Model["flavors"].Length == 0)
-  {
-    <p>No flavors have been added yet!</p>
-  } 
-  <ul>
-    @foreach (Flavor flavor in Model["flavors"])
-    {
-      <li>@Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
-    }
-  </ul>
-}
-else
-{
-  <h4>Flavors</h4>
-  <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your flavors.</p>
-}
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h4>Your Treats</h4>
+            @if (Model["treats"].Length == 0)
+            {
+                <p>No treats have been added yet!</p>
+            }
+            <div class="button-container">
+                @foreach (Treat treat in Model["treats"])
+                {
+                    <button class="button flavor-treat-btn">
+                        @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })
+                    </button>
+                }
+            <button class="button flavor-treat-btn">
+            @Html.ActionLink("+", "Create", "Treats")
+            </button>
+            </div>
+        }
+        else
+        {
+            <h4>Treats</h4>
+            <p>Please @Html.ActionLink("log in", "LogIn", "Account", new { @class = "button brown-button login-link" }) to view or manage your treats.
+            </p>
+        }
 
-@if (User.Identity.IsAuthenticated)
-{
-  <h4>Your Treats</h4>
-  @if (Model["treats"].Length == 0)
-  {
-    <p>No treats have been added yet!</p>
-  } 
-  <ul>
-    @foreach (Treat treat in Model["treats"])
-    {
-      <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId})</li>
-    }
-  </ul>
-}
-else
-{
-  <h4>Treats</h4>
-  <p>Please @Html.ActionLink("log in", "LogIn", "Account", new { @class = "button login-link" }) to view or manage your flavors.</p>
-}
+        <hr>
+    </div>
 
-
-<hr>
-
-<p>@Html.ActionLink("Manage flavors", "Index", "Flavors")</p> 
-<p>@Html.ActionLink("Manage treats", "Index", "Treats")</p>
-<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
+    <div class="button-container">
+        <button class="button brown-button">@Html.ActionLink("Manage flavors", "Index", "Flavors")</button>
+        <button class="button brown-button">@Html.ActionLink("Manage treats", "Index", "Treats")</button>
+        <button class="button">@Html.ActionLink("Create or manage an account", "Index", "Account")</button>
+    </div>
+</div>

@@ -3,7 +3,7 @@
 }
 
 @using Bakery.Models;
-
+<div class="container">
 <h1>Your Flavors</h1>
 
 @if (@Model.Count == 0)
@@ -21,3 +21,4 @@ else
 }
 <br>
 <p>@Html.ActionLink("Add new flavor", "Create")</p>
+</div>

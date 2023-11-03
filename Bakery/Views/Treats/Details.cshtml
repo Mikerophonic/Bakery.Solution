@@ -4,6 +4,7 @@
 
 @using Bakery.Models
 @model Bakery.Models.Treat
+<div class="container">
 
 <h2>Treat Details</h2>
 <hr />
@@ -28,8 +29,9 @@ else
   }
   </ul>
 }
-
+<br>
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+</div>

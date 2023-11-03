@@ -1,6 +1,7 @@
 @{
   Layout = "_Layout";
 }
+<div class="container">
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -16,3 +17,4 @@ else
   <p>@Html.ActionLink("Log in", "Login")</p>
 }
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
+</div>
