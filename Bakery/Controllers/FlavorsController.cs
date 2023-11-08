@@ -39,7 +39,7 @@ namespace Bakery.AddControllersWithViews
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Title");
       return View();
     }
-
+    
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {

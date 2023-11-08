@@ -11,6 +11,7 @@ using System.Linq;
 
 namespace Bakery.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly BakeryContext _db;
