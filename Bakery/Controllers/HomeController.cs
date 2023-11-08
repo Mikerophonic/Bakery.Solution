@@ -19,27 +19,19 @@ namespace Bakery.Controllers
       _db = db;
     }
 
-    [HttpGet("/")]
-    public async Task<ActionResult> Index()
-    {
-      string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-      Dictionary<string, object[]> model = new Dictionary<string, object[]>();
-      if (currentUser != null)
-      {
-        Flavor[] flavors = _db.Flavors
-                    .Where(entry => entry.User.Id == currentUser.Id)
-                    .ToArray();
-        model.Add("flavors", flavors);
-      }
-      if (currentUser != null)
-      {
-        Treat[] treats = _db.Treats
-          .Where(entry => entry.User.Id == currentUser.Id)
-          .ToArray();
-        model.Add("treats", treats);
-      }
-      return View(model);
-    }
+        [HttpGet("/")]
+        public ActionResult Index()
+        {
+            var flavors = _db.Flavors.ToList(); 
+            var treats = _db.Treats.ToList(); 
+
+            var viewModel = new HomeViewModel
+            {
+                Flavors = flavors,
+                Treats = treats
+            };
+
+            return View(viewModel);
+        }
   }
 }

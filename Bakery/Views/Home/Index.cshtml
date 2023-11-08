@@ -8,15 +8,13 @@
     <h1>Welcome to Pierre's Bakery!</h1>
 
     <div class="flex-container flavor-treat-div">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <h4>Your Flavors</h4>
-            @if (Model["flavors"].Length == 0)
+            <h4>Flavors</h4>
+            @if (Model.Flavors.Count == 0)
             {
                 <p>No flavors have been added yet!</p>
             }
             <div class="button-container">
-                @foreach (Flavor flavor in Model["flavors"])
+                @foreach (Flavor flavor in Model.Flavors)
                 {
                     <button class="button flavor-treat-btn">
                         @Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId })
@@ -26,22 +24,14 @@
             @Html.ActionLink("+", "Create", "Flavors")
             </button>
             </div>
-        }
-        else
-        {
-            <h4>Flavors</h4>
-            <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your flavors.</p>
-        }
 
-        @if (User.Identity.IsAuthenticated)
-        {
-            <h4>Your Treats</h4>
-            @if (Model["treats"].Length == 0)
+            <h4>Treats</h4>
+            @if (Model.Treats.Count == 0)
             {
                 <p>No treats have been added yet!</p>
             }
             <div class="button-container">
-                @foreach (Treat treat in Model["treats"])
+                @foreach (Treat treat in Model.Treats)
                 {
                     <button class="button flavor-treat-btn">
                         @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })
@@ -51,13 +41,6 @@
             @Html.ActionLink("+", "Create", "Treats")
             </button>
             </div>
-        }
-        else
-        {
-            <h4>Treats</h4>
-            <p>Please @Html.ActionLink("log in", "LogIn", "Account", new { @class = "button brown-button login-link" }) to view or manage your treats.
-            </p>
-        }
 
         <hr>
     </div>
