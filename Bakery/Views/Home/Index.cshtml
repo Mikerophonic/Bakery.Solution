@@ -1,5 +1,5 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 
 @using Bakery.Models;
@@ -8,46 +8,45 @@
     <h1>Welcome to <span class="name">Pierre's Bakery</span>!</h1>
 
     <div class="flex-container flavor-treat-div">
-            <h4>Flavors</h4>
-            @if (Model.Flavors.Count == 0)
+        <h4>Flavors</h4>
+        @if (Model.Flavors.Count == 0)
+        {
+            <p>No flavors have been added yet!</p>
+        }
+        <div class="button-container">
+            @foreach (Flavor flavor in Model.Flavors)
             {
-                <p>No flavors have been added yet!</p>
-            }
-            <div class="button-container">
-                    @foreach (Flavor flavor in Model.Flavors)
-                    {
-                        <button class="button flavor-treat-btn">
-                            @Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId })
-                        </button>
-                    }
-                <button class="button flavor-treat-btn">
-                @Html.ActionLink("+", "Create", "Flavors")
+                <button class="button flavor-treat-btn" onclick="location.href='@Url.Action("Details", "Flavors", new { id = flavor.FlavorId })'">
+                    @flavor.Description
                 </button>
-            </div>
+            }
+            <button class="button flavor-treat-btn" onclick="location.href='@Url.Action("Create", "Flavors")'">
+                +
+            </button>
+        </div>
 
-            <h4>Treats</h4>
-            @if (Model.Treats.Count == 0)
+        <h4>Treats</h4>
+        @if (Model.Treats.Count == 0)
+        {
+            <p>No treats have been added yet!</p>
+        }
+        <div class="button-container">
+            @foreach (Treat treat in Model.Treats)
             {
-                <p>No treats have been added yet!</p>
-            }
-            <div class="button-container">
-                @foreach (Treat treat in Model.Treats)
-                {
-                    <button class="button flavor-treat-btn">
-                        @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })
-                    </button>
-                }
-                <button class="button flavor-treat-btn">
-                @Html.ActionLink("+", "Create", "Treats")
+                <button class="button flavor-treat-btn" onclick="location.href='@Url.Action("Details", "Treats", new { id = treat.TreatId })'">
+                    @treat.Name
                 </button>
-            </div>
+            }
+            <button class="button flavor-treat-btn" onclick="location.href='@Url.Action("Create", "Treats")'">
+                +
+            </button>
+        </div>
 
         <hr>
     </div>
 
     <div class="button-container">
-        <button class="button">@Html.ActionLink("Manage flavors", "Index", "Flavors")</button>
-        <button class="button">@Html.ActionLink("Manage treats", "Index", "Treats")</button>
-        <button class="button">@Html.ActionLink("Create or manage an account", "Index", "Account")</button>
+        <button class="button" onclick="location.href='@Url.Action("Index", "Treats")'">Manage treats</button>
+        <button class="button" onclick="location.href='@Url.Action("Index", "Account")'">Create or manage an account</button>
     </div>
 </div>

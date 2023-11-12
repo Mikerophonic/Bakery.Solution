@@ -1,19 +1,19 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 <div class="container">
 
-  @if (User.Identity.IsAuthenticated)
-  {
-    <p>Hello @User.Identity.Name!</p>
-    @using (Html.BeginForm("LogOff", "Account"))
+    @if (User.Identity.IsAuthenticated)
     {
-      <input type="submit" class="button" value="Log out" />
+        <p>Hello @User.Identity.Name!</p>
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+            <button type="submit" class="button">Log out</button>
+        }
     }
-  }
-  else
-  {
-    <p><button class="button">@Html.ActionLink("Register", "Register")</button></p>
-    <p><button class="button">@Html.ActionLink("Log in", "Login")</button></p>
-  }
+    else
+    {
+        <p><button class="button" onclick="location.href='@Url.Action("Register")'">Register</button></p>
+        <p><button class="button" onclick="location.href='@Url.Action("Login")'">Log in</button></p>
+    }
 </div>

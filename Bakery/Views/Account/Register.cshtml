@@ -1,33 +1,33 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 <div class="container">
 
-@using Bakery.ViewModels
+    @using Bakery.ViewModels
 
-@model RegisterViewModel
+    @model RegisterViewModel
 
-<h2>Register a new user</h2>
-<hr />
+    <h2>Register a new user</h2>
+    <hr />
 
-@if(!ViewData.ModelState.IsValid) 
-{
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the      form:") 
-}
+    @if (!ViewData.ModelState.IsValid)
+    {
+        @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:")
+    }
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-  @Html.LabelFor(user => user.Email)
-  @Html.TextBoxFor(user=> user.Email)
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        @Html.LabelFor(user => user.Email)
+        @Html.TextBoxFor(user => user.Email)
 
-  @Html.LabelFor(user=> user.Password)
-  @Html.EditorFor(user=> user.Password)
+        @Html.LabelFor(user => user.Password)
+        @Html.EditorFor(user => user.Password)
 
-  @Html.LabelFor(user=> user.ConfirmPassword)
-  @Html.EditorFor(user=> user.ConfirmPassword)
+        @Html.LabelFor(user => user.ConfirmPassword)
+        @Html.EditorFor(user => user.ConfirmPassword)
 
-  <input type="submit" class = "button" value="Register" />
-}
+        <button type="submit" class="button">Register</button>
+    }
 
-<p><button class="button">@Html.ActionLink("Back to accounts page", "Index")</button></p>      
+    <p><button class="button" onclick="location.href='@Url.Action("Index")'">Back to accounts page</button></p>
 </div>
