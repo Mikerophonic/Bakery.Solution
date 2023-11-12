@@ -3,18 +3,17 @@
 }
 <div class="container">
 
-@if (User.Identity.IsAuthenticated)
-{
-  <p>Hello @User.Identity.Name!</p>
-  @using (Html.BeginForm("LogOff", "Account"))
+  @if (User.Identity.IsAuthenticated)
   {
-    <input type="submit" class="btn btn-primary" value="Log out" />
+    <p>Hello @User.Identity.Name!</p>
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+      <input type="submit" class="button" value="Log out" />
+    }
   }
-}
-else
-{
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
-}
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+  else
+  {
+    <p><button class="button">@Html.ActionLink("Register", "Register")</button></p>
+    <p><button class="button">@Html.ActionLink("Log in", "Login")</button></p>
+  }
 </div>

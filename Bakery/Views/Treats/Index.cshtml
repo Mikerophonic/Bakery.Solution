@@ -16,10 +16,12 @@
     <ul>
       @foreach (Treat treat in Model)
       {
+        <button class="button flavor-treat-btn">
         <li>@Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })</li>
+        </button>
       }
       </ul>
   }
   <br>
-  <p>@Html.ActionLink("Add new treat", "Create")</p>
+  <p><button class="button">@Html.ActionLink("Add new treat", "Create")</button></p>
 </div>

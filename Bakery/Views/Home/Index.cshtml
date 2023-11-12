@@ -5,7 +5,7 @@
 @using Bakery.Models;
 
 <div class="container">
-    <h1>Welcome to Pierre's Bakery!</h1>
+    <h1>Welcome to <span class="name">Pierre's Bakery</span>!</h1>
 
     <div class="flex-container flavor-treat-div">
             <h4>Flavors</h4>
@@ -14,15 +14,15 @@
                 <p>No flavors have been added yet!</p>
             }
             <div class="button-container">
-                @foreach (Flavor flavor in Model.Flavors)
-                {
-                    <button class="button flavor-treat-btn">
-                        @Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId })
-                    </button>
-                }
-            <button class="button flavor-treat-btn">
-            @Html.ActionLink("+", "Create", "Flavors")
-            </button>
+                    @foreach (Flavor flavor in Model.Flavors)
+                    {
+                        <button class="button flavor-treat-btn">
+                            @Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId })
+                        </button>
+                    }
+                <button class="button flavor-treat-btn">
+                @Html.ActionLink("+", "Create", "Flavors")
+                </button>
             </div>
 
             <h4>Treats</h4>
@@ -37,17 +37,17 @@
                         @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })
                     </button>
                 }
-            <button class="button flavor-treat-btn">
-            @Html.ActionLink("+", "Create", "Treats")
-            </button>
+                <button class="button flavor-treat-btn">
+                @Html.ActionLink("+", "Create", "Treats")
+                </button>
             </div>
 
         <hr>
     </div>
 
     <div class="button-container">
-        <button class="button brown-button">@Html.ActionLink("Manage flavors", "Index", "Flavors")</button>
-        <button class="button brown-button">@Html.ActionLink("Manage treats", "Index", "Treats")</button>
+        <button class="button">@Html.ActionLink("Manage flavors", "Index", "Flavors")</button>
+        <button class="button">@Html.ActionLink("Manage treats", "Index", "Treats")</button>
         <button class="button">@Html.ActionLink("Create or manage an account", "Index", "Account")</button>
     </div>
 </div>
